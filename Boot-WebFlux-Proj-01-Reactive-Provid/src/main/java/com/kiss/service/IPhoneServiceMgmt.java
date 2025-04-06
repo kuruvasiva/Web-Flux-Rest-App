@@ -18,5 +18,5 @@ public interface IPhoneServiceMgmt {
 	
 	public Mono<String> updatePhone(Phone phone);
 	
-	public Mono<Response> phoneFindByObject(Phone phone);
+	public Flux<Phone> phonesFindByname(String name);
 }

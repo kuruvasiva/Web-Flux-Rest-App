@@ -33,4 +33,5 @@ public class Response {
 		result = msg;
 	}
 	
+	
 }

@@ -62,11 +62,9 @@ public class PhoneServiceMgmtImpl implements IPhoneServiceMgmt{
 		}	
 	
 	@Override
-	public Mono<Response> phoneFindByObject(Phone phone) {
-
-		return repo.findById(phone.getPid())
-				.map(pho->new Response(pho))
-				.switchIfEmpty(Mono.just(new Response("Phone with ID"+phone.getPid() +" is not found")));
-	
+	public Flux<Phone> phonesFindByname(String name) {
+		// 
+		Flux<Phone> list = repo.findByName(name);
+		return list.switchIfEmpty(Flux.empty());
 	}
 }

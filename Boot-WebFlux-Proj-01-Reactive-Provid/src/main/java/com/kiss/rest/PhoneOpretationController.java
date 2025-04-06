@@ -67,13 +67,13 @@ public class PhoneOpretationController {
 		return new ResponseEntity<>(updateMsg, HttpStatus.OK);
 	}
 	
-	@GetMapping("/ofind")
-	public ResponseEntity<Mono<Response>> findByPhone(@RequestBody Phone phone){
+	@GetMapping("/findName/{name}")   // get mapping @ReqeuestBody is not working 
+	public ResponseEntity<Flux<Phone>> findPhonesByName(@PathVariable String name){
 		System.out.println("findByPhone() \033[1;33m"+Thread.currentThread().getName()+" \033[1;0m");
 		 
-		Mono<Response> mono = service.phoneFindByObject(phone);
-		 
-		 return new ResponseEntity<Mono<Response>>(mono,HttpStatus.OK);
+		Flux<Phone> flux = service.phonesFindByname(name);	
+		
+		 return new ResponseEntity<>(flux,HttpStatus.OK);
 	}
 	
 }
