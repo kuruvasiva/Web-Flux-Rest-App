@@ -29,7 +29,7 @@ public class PhoneOpretationController {
 	@PostMapping("/save")
 	public ResponseEntity<Mono<Phone>> registerPhone(@RequestBody Phone phone){
 		
-		System.out.println(phone);
+		// System.out.println(phone);
 		System.out.println("RegisterPhone() \033[1;31m"+Thread.currentThread().getName()+"\033[1;0m");
 		 Mono<Phone> mono = service.savePhone(phone);
 		 return new ResponseEntity<Mono<Phone>>(mono,HttpStatus.CREATED);
