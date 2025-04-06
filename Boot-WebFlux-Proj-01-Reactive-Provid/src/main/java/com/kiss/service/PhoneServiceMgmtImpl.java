@@ -8,6 +8,7 @@ import com.kiss.help.Response;
 import com.kiss.model.Phone;
 import com.kiss.repository.IPhoneRepository;
 
+import io.swagger.v3.oas.models.examples.Example;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -60,5 +61,12 @@ public class PhoneServiceMgmtImpl implements IPhoneServiceMgmt{
 		   
 		}	
 	
+	@Override
+	public Mono<Response> phoneFindByObject(Phone phone) {
+
+		return repo.findById(phone.getPid())
+				.map(pho->new Response(pho))
+				.switchIfEmpty(Mono.just(new Response("Phone with ID"+phone.getPid() +" is not found")));
 	
+	}
 }

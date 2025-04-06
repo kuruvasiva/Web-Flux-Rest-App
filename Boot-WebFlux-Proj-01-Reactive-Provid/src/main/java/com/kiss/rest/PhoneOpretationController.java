@@ -44,7 +44,7 @@ public class PhoneOpretationController {
 	public ResponseEntity<Mono<Response>> findByIdPhone(@PathVariable Integer pid){
 		System.out.println("findByIdPhone() \033[1;33m"+Thread.currentThread().getName()+" \033[1;0m");
 		 
-		Mono<Response> mono = (Mono<Response>) service.findById(pid);
+		Mono<Response> mono = service.findById(pid);
 		 
 		 return new ResponseEntity<Mono<Response>>(mono,HttpStatus.OK);
 	}
@@ -67,5 +67,13 @@ public class PhoneOpretationController {
 		return new ResponseEntity<>(updateMsg, HttpStatus.OK);
 	}
 	
+	@GetMapping("/ofind")
+	public ResponseEntity<Mono<Response>> findByPhone(@RequestBody Phone phone){
+		System.out.println("findByPhone() \033[1;33m"+Thread.currentThread().getName()+" \033[1;0m");
+		 
+		Mono<Response> mono = service.phoneFindByObject(phone);
+		 
+		 return new ResponseEntity<Mono<Response>>(mono,HttpStatus.OK);
+	}
 	
 }
